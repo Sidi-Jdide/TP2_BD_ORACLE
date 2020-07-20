@@ -178,13 +178,14 @@ TauxEscompteFidelite NUMBER ,
 EscompteFidelite generated always AS (PrixVenteVehicule * TauxEscompteFidelite),
 CoutTotalOption NUMBER ,
 
-CoutVehiculeEscompte number,
-TotalVenteTaxable number,
-TaxeFredCourante number,
-TaxeProvCourante number,
-TotalTaxes number,
-GrandTotalVente number ,
+CoutVehiculeEscompte generated always AS(PrixVenteVehicule*TauxEscompteSaisonnier+PrixVenteVehicule*TauxEscompteFidelite) ,
 
+TotalVenteTaxable  generated always AS(PrixVenteVehicule-(PrixVenteVehicule*TauxEscompteSaisonnier+PrixVenteVehicule*TauxEscompteFidelite+CoutTotalOption)) ,
+
+TaxeFredCourante generated always AS(PrixVenteVehicule-(PrixVenteVehicule*TauxEscompteSaisonnier+PrixVenteVehicule*TauxEscompteFidelite+CoutTotalOption) * 0.05),
+TaxeProvCourante  generated always AS(PrixVenteVehicule-(PrixVenteVehicule*TauxEscompteSaisonnier+PrixVenteVehicule*TauxEscompteFidelite+CoutTotalOption)*0.0975),
+TotalTaxes generated always AS(PrixVenteVehicule-(PrixVenteVehicule*TauxEscompteSaisonnier+PrixVenteVehicule*TauxEscompteFidelite+CoutTotalOption) * 0.05+ PrixVenteVehicule-(PrixVenteVehicule*TauxEscompteSaisonnier+PrixVenteVehicule*TauxEscompteFidelite+CoutTotalOption)*0.0975),
+GrandTotalVente generated always AS(PrixVenteVehicule+PrixVenteVehicule-(PrixVenteVehicule*TauxEscompteSaisonnier+PrixVenteVehicule*TauxEscompteFidelite+CoutTotalOption) * 0.05+ PrixVenteVehicule-(PrixVenteVehicule*TauxEscompteSaisonnier+PrixVenteVehicule*TauxEscompteFidelite+CoutTotalOption)*0.0975)  ,
  CONSTRAINT FK_Vehicules FOREIGN KEY
 (NoSerieVehicule) REFERENCES AU_Vehicules (NoSerieVehicule),
 
