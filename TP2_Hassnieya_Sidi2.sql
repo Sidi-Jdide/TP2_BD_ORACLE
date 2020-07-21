@@ -129,7 +129,7 @@ CREATE TABLE AU_Clients
 	Login varchar2(12) NOT NULL,
 	ProvCd char(2) NOT NULL,
 	SexeCd char(1) NOT NULL,
-	ClientTpCd char(10) NOT NULL,
+	ClientTpCd char(20) NOT NULL,
 	LangCd char(2) NOT NULL,
 	ClientNom varchar2(25) NOT NULL,
 	ClientPrenom varchar2(25) NOT NULL,
@@ -248,7 +248,7 @@ ALTER TABLE AU_Clients
 ADD (
 CONSTRAINT CK_SEXE CHECK (SexeCd  in ('M','F')),
 CONSTRAINT CK_IdicateurFidelite CHECK (IndicateurFidelite in ('0','1')),
-CONSTRAINT CK_Langue CHECK ( REGEXP_LIKE(LangCd ,'[a-z]{2}'))
+CONSTRAINT CK_Langue CHECK ( REGEXP_LIKE(LangCd ,'[A-Z]{2}'))  
 /*
 constraint check_ClientNoFax 
 check (REGEXP_LIKE(ClientNoFax,'^\(?([0-9]{3})\)?[-.?]?([0-9]{3})[-.?]?([0-9]{4})$')),
@@ -343,24 +343,16 @@ INSERT INTO AU_Vehicules VALUES ('MAZD4896864', '258 DJS', 'CX7', 'Rouge', 4, 24
 INSERT INTO AU_Vehicules VALUES ('MAZD6556566', '689 OPP', 'CX5', 'Vert', 4, 162, 2012, 21589.74);
 INSERT INTO AU_Vehicules VALUES ('MAZD5686687', '411 DFC', 'MX5', 'Vert', 4, 244, 2006, 33578.15);
 
+-- Insertion des données table  AU_Options
 INSERT INTO AU_Options VALUES ('CHROMEWHEELS', 'Roues chromÃ©s', 'Chrome wheels');
 INSERT INTO AU_Options VALUES ('MP3PLAYER', 'Lecteur MP3', 'MP3 player');
 INSERT INTO AU_Options VALUES ('LEATHERSEATS', 'SiÃ¨ges en cuir', 'Leather seats');
+
 
 INSERT INTO AU_OptionsDisponibles VALUES ('CHROMEWHEELS', 'MX5', '1', 699.95);
 INSERT INTO AU_OptionsDisponibles VALUES ('CHROMEWHEELS', 'CX5', '1', 399.95);
 INSERT INTO AU_OptionsDisponibles VALUES ('CHROMEWHEELS', 'CX7', '0', 499.95);
 INSERT INTO AU_OptionsDisponibles VALUES ('CHROMEWHEELS', 'CX9', '1', 499.95);
-INSERT INTO AU_OptionsDisponibles VALUES ('MP3PLAYER', 'MX5', '1', 99.95);
-INSERT INTO AU_OptionsDisponibles VALUES ('MP3PLAYER', 'CX5', '1', 99.95);
-INSERT INTO AU_OptionsDisponibles VALUES ('MP3PLAYER', 'CX7', '1', 99.95);
-INSERT INTO AU_OptionsDisponibles VALUES ('MP3PLAYER', 'CX9', '1', 99.95);
-INSERT INTO AU_OptionsDisponibles VALUES ('MP3PLAYER', 'BT50', '1', 99.95);
-INSERT INTO AU_OptionsDisponibles VALUES ('LEATHERSEATS', 'MX5', '1', 299.95);
-INSERT INTO AU_OptionsDisponibles VALUES ('LEATHERSEATS', 'CX5', '0', 299.95);
-INSERT INTO AU_OptionsDisponibles VALUES ('LEATHERSEATS', 'CX7', '0', 299.95);
-INSERT INTO AU_OptionsDisponibles VALUES ('LEATHERSEATS', 'CX9', '0', 299.95);
-INSERT INTO AU_OptionsDisponibles VALUES ('LEATHERSEATS', 'BT50', '0', 299.95);
 
 INSERT INTO AU_ModesFinancements VALUES (1,'Comptant', 'Cash');
 INSERT INTO AU_ModesFinancements VALUES (2,'Débit', 'Debit');
@@ -371,26 +363,37 @@ INSERT INTO AU_ModesFinancements VALUES (6,'Crédit', 'Credit');
 INSERT INTO AU_ModesFinancements VALUES (7,'Crédit', 'Credit');
 
 
--- Insertion des données 
+-- Insertion des données  
 INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
-VALUES (ClientID.NEXTVAL,'sdc','QC','M','QC','En','Sogho','Sara','alo','22 avenu dep','Rimonski','g1d 2j4','Canada','(418)905-0798','(418)983-0934','sara@gmail.com','www.sara.qc.ca','0');
+VALUES (ClientID.NEXTVAL,'sdc','QC','M','Entreprise','EN','Trudo','François','alo','22 avenu dep','Rimonski','g1d 2j4','Canada','(418)905-0798','(418)983-0934','Francois.T@gmail.com','www.sara.qc.ca','0');
 INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite) 
-VALUES (ClientID.NEXTVAL,'rt','QC','F','QC','Fr','Marin','Julie','alo','29 avenu dep','Otawa','g1d 4j4','Canada','(418)905-0798','(418)983-0934','@gmail.com','www.joulie.ca','1');
+VALUES (ClientID.NEXTVAL,'rt','ON','F','Personnel','FR','Mohamed','Ali','alo','29 avenu dep','Otawa','g1d 4j4','Canada','(418)905-0798','(418)983-0934','Mohamed.A@gmail.com','mA.ca','1');
 INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
-VALUES (ClientID.NEXTVAL,'uyh','QC','M','QC
-','Ar','Cheyakh','Meda','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+VALUES (ClientID.NEXTVAL,'uyh','QC','M','QC' ,'AR','Philipe','Arneau','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','Arneau@gmail.com','www.meda.mr','1');
 INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
-VALUES (ClientID.NEXTVAL,'uyh','QC','M','QC
-','Ar','Cheyakh','Meda','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+VALUES (ClientID.NEXTVAL,'uyh','QC','F','Enreprise','ZH','Bodreau','Holio','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','Holio@gmail.com','www.Holio.mr','1');
 INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
-VALUES (ClientID.NEXTVAL,'uyh','QC','M','QC
-','Ar','Cheyakh','Meda','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+VALUES (ClientID.NEXTVAL,'uyh','AB','M','Pays','FR','Ahmed','Abdi','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
 INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
-VALUES (ClientID.NEXTVAL,'uyh','QC','M','QC
-','Ar','Cheyakh','Meda','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+VALUES (ClientID.NEXTVAL,'uyh','QC','F','Étranger','ID','Le roi','Sidi','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
 INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
-VALUES (ClientID.NEXTVAL,'uyh','QC','M','QC
-','Ar','Cheyakh','Meda','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+VALUES (ClientID.NEXTVAL,'uyh','ON','F','commercial','PT','Bordeau','Kevin','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
+VALUES (ClientID.NEXTVAL,'uyh','BC','F','Entreprise','JA','Hassen','Houssein','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
+VALUES (ClientID.NEXTVAL,'uyh','QC','F','Étranger','FR','Tov','Bimou','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
+VALUES (ClientID.NEXTVAL,'uyh','AB','M','Personnel','AR','Steve','Ladou','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
+VALUES (ClientID.NEXTVAL,'uyh','QC','M','Entreprise','EN','Kop','Yara','sel','29 avenu dep','Montreal','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
+VALUES (ClientID.NEXTVAL,'uyh','QC','M','service','ES','Liberté','Zizi','sel','29 avenu dep','Chicoutimi','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
+VALUES (ClientID.NEXTVAL,'uyh','QC','M','personnel','ES','Lagis','Eder','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
+VALUES (ClientID.NEXTVAL,'uyh','BC','F','entreprise','EN','Holio','Badi','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
+INSERT INTO AU_Clients (ClientID,Login,ProvCd,SexeCd,ClientTpCd,LangCd,ClientNom,ClientPrenom,ClientSalutation,ClientAdresse,ClientVille,ClientCdPostal,ClientPays,ClientNoTel,ClientNoFax,ClientEmail,ClientSiteInternet,IndicateurFidelite)
+VALUES (ClientID.NEXTVAL,'uyh','QC','M','personnel','FR','Martan','François','sel','29 avenu dep','Gatinau','s3k 8j4','Canada','(418)905-2345','(415)345-0934','meda@gmail.com','www.meda.mr','1');
 
 -- Insertion des données dans la table AU_Ventes
 
@@ -399,6 +402,26 @@ INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, Ta
 INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',3,3,2,0.03,3000,2000,1,0.02,300); 
 INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',4,4,2,0.03,3000,2000,1,0.02,300); 
 INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',5,5,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',6,6,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',7,7,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',6,6,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',7,7,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',6,6,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',7,7,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',6,6,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',7,7,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',6,6,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',7,7,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',6,6,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',7,7,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',6,6,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',7,7,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',6,6,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',7,7,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',6,6,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',7,7,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',6,6,2,0.03,3000,2000,1,0.02,300); 
+INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',7,7,2,0.03,3000,2000,1,0.02,300); 
 INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',6,6,2,0.03,3000,2000,1,0.02,300); 
 INSERT INTO AU_Ventes (VenteID, NoSerieVehicule, ClientID, ModeFinCd, EmplID, TauxEscompteSaisonnier, PrixSuggere, PrixVenteVehicule, IndicateurFidelite, TauxEscompteFidelite, CoutTotalOption) VALUES (VenteID.NEXTVAL,'MAZD8982103',7,7,2,0.03,3000,2000,1,0.02,300); 
 
@@ -413,4 +436,37 @@ INSERT INTO AU_VentesOptions (VenteID, OptionCd, ModeCd, PrixUnitaireOption,QteA
 INSERT INTO AU_VentesOptions (VenteID, OptionCd, ModeCd, PrixUnitaireOption,QteAchetee,CoutOption) VALUES (4,'CHROMEWHEELS','MX5',699.95,1,699.95);
 INSERT INTO AU_VentesOptions (VenteID, OptionCd, ModeCd, PrixUnitaireOption,QteAchetee,CoutOption) VALUES (7,'LEATHERSEATS','CX5',299.95,1,299.95);
 INSERT INTO AU_VentesOptions (VenteID, OptionCd, ModeCd, PrixUnitaireOption,QteAchetee,CoutOption) VALUES (7,'MP3PLAYER','CX5',99.95,1,99.95);
+
+
+
+---------- ****************** Partie II : Requettes ************** ------------
+
+-- Question 1 :
+
+
+-- Question 2 :
+
+-- Question 3 :
+
+
+-- Question 4 :
+
+
+-- Question 5 :
+
+-- Question 6 :
+
+-- Question 7 :
+
+-- Question 8 :
+
+
+-- Question 9 :
+
+-- Question 10 :
+
+-- Question 11 :
+
+-- Question 12 :
+
 
